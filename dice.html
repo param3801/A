@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dice-game</title>
+</head>
+<style>
+  .js-result-container{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  margin-bottom: 10px;
+  }
+  .image-container,
+  .win-loss-die{
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .win-loss-die{
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+  }
+  .player-dice{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+
+  }
+  .js-player{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .image-player{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    padding: 10px;
+    margin-right: 30spx;
+
+  }
+  .image-fix-dice2{
+    object-fit: contain;
+    width: 140px;
+    height: 140px;
+    background-color:transparent;
+  }
+  .player1-button,
+  .player2-button{
+    border: none;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    margin-inline: 40px;
+
+  }
+ 
+</style>
+<body>
+
+  <div class="js-result-container">
+    <div class="image-container">
+      <img src="./image-winner.png" alt="">
+    </div>
+    <div class ='win-loss-die js-result'>
+      <h2>Winner Name</h2>
+    </div>
+
+  </div>
+  <div class="player-dice js-player-image-dice">
+   
+  </div>
+  <div class="js-player">
+    <button class="player1-button">
+      Player1
+    </button>
+    <button class="player2-button">
+      Player2
+    </button>
+
+  </div>
+  
+  <script>
+    
+    var result = '';
+    var Player1Get = '';
+    var Player2Get = '';
+
+    function whoWin(){
+    const player1 = Math.ceil(Math.random()*6);
+    Player1Get = player1;
+
+    const player2 = Math.ceil(Math.random()*6);
+    Player2Get = player2;
+
+    if(player1 > player2){
+      result = 'Player1';
+
+     
+    }
+    else if(player1 < player2){
+      result = 'Player2';
+
+    }
+    else if(player1 === player2){
+      result='Die';
+    }
+    }
+    whoWin();
+    console.log(result);
+    console.log(Player1Get);
+    console.log(Player2Get);
+
+    var diceImageHtml = `
+     <div class="js-show-result1 image-player">
+       <img class='image-fix-dice2' src="./image-${Player1Get}.png" alt="">
+      </div>
+     
+    <div class="js-show-result2 image-player">
+      <img class='image-fix-dice2' src="./image-${Player2Get}.png" alt="">
+    </div>
+     
+
+
+    `
+    document.querySelector('h2').innerHTML = result;
+
+     document.querySelector('.js-player-image-dice').innerHTML = diceImageHtml 
+
+    
+
+
+
+  </script>
+</body>
+</html>
